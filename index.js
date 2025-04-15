@@ -4,6 +4,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 
 const userRouter = require('./src/Modules/Users/user.routes');
+const bookRouter = require('./src/Modules/Books/book.routes');
+const commentRouter = require('./src/Modules/Comments/comment.routes');
 const ConnectMongoDB = require('./DB/connection');
 
 const app = express();
@@ -16,6 +18,10 @@ ConnectMongoDB();
 
 // Routes   
 app.use('/users', userRouter);
+app.use('/books', bookRouter);
+app.use('/comments', commentRouter);
+
+
 
 // Start the server
 app.listen(process.env.PORT, () => {
