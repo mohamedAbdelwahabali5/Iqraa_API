@@ -4,7 +4,9 @@
   "description": "A robust Node.js/Express backend API for a comprehensive digital library platform. This repository provides the server-side infrastructure to power a feature-rich online library containing historical books, novels, scientific references, and other literature.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
