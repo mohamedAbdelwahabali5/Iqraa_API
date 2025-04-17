@@ -6,6 +6,8 @@ const bookSchema = Joi.object({
     author: Joi.string().min(3).max(50).trim().required(),
     description: Joi.string().min(10).max(2000).trim().required(),
     pdfFile: Joi.string().trim().uri().required(),
+    coverImage: Joi.string().trim().uri().required(),
+    NumberOfPages: Joi.number().integer().min(0).required(),
     available: Joi.boolean().default(true).required(),
     price: Joi.number().min(0).required(),
     stockQuantity: Joi.number().integer().min(0).required(),

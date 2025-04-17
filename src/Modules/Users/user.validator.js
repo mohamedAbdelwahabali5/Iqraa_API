@@ -63,7 +63,6 @@ const registerSchema = Joi.object({
   phoneNumber: Joi.string()
     .trim()
     .pattern(/^01[0-2,5]{1}[0-9]{8}$/)
-    .required()
     .messages({
       'string.pattern.base': 'Please enter a valid Egyptian phone number (e.g., 01123456789)',
       'any.required': 'Phone number is required'
