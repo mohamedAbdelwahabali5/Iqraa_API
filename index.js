@@ -10,6 +10,7 @@ const userRouter = require('./src/Modules/Users/user.routes');
 const bookRouter = require('./src/Modules/Books/book.routes');
 const commentRouter = require('./src/Modules/Comments/comment.routes');
 const categoryRouter = require('./src/Modules/Categories/category.routes');
+const orderRouter = require('./src/Modules/Orders/order.routes');
 
 
 const app = express();
@@ -25,6 +26,8 @@ app.use('/users', userRouter);
 app.use('/books', bookRouter);
 app.use('/comments', commentRouter);
 app.use('/api/categories', categoryRouter);
+app.use('/api/orders', orderRouter);
+
 
 
 
