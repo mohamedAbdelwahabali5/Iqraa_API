@@ -16,7 +16,7 @@ const authMiddleware = async (req, res, next) => {
     
     if (!token) {
       return res.status(401).json({ 
-        error: 'Authentication required',
+        error: 'Authentication required : Unthorized',
       });
     }
 

@@ -24,7 +24,7 @@ ConnectMongoDB();
 app.use('/users', userRouter);
 app.use('/books', bookRouter);
 app.use('/comments', commentRouter);
-app.use('/categories', commentRouter);
+app.use('/api/categories', categoryRouter);
 
 
 
