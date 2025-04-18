@@ -38,10 +38,15 @@ const bookSchema = new mongoose.Schema({
     required: true,
     trim: true,
     default: 'https://default'
-  },
+  },  
   available: {
     type: Boolean,
     default: true,
+  },
+  NumberOfPages: {
+    type: Number,
+    required: [true, 'Number of pages is required'],
+    min: [0, 'Number of pages cannot be negative']
   },
   price: {
     type: Number,
@@ -81,6 +86,4 @@ const bookSchema = new mongoose.Schema({
 
 const Book = mongoose.model('Book', bookSchema);
 
-module.exports = {
-    Book
-};
+module.exports = Book;

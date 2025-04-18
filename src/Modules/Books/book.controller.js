@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 // Get all books
 const getAllBooks = async (req, res) => {
   try {
-    const books = await Book.find().populate('category', 'name');
+    const books = await Book.find();
+    // .populate('category', 'name');
     res.status(200).json(books);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch books', details: error.message });
@@ -18,7 +19,8 @@ const getBookById = async (req, res) => {
       return res.status(400).json({ error: 'Invalid book ID format' });
     }
 
-    const book = await Book.findById(req.params.id).populate('category', 'name');
+    const book = await Book.findById(req.params.id);
+    // .populate('category', 'name');
     
     if (!book) {
       return res.status(404).json({ error: 'Book not found' });
@@ -59,7 +61,8 @@ const updateBook = async (req, res) => {
       req.params.id, 
       req.body, 
       { new: true, runValidators: true }
-    ).populate('category', 'name');
+    );
+    // .populate('category', 'name');
     
     if (!book) {
       return res.status(404).json({ error: 'Book not found' });
@@ -87,7 +90,7 @@ const deleteBook = async (req, res) => {
       return res.status(404).json({ error: 'Book not found' });
     }
     
-    res.status(204).end();
+    res.status(204).end({message: 'Book deleted successfully'});
   } catch (error) {
     res.status(500).json({ 
       error: 'Failed to delete book',

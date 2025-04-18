@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('./../Modules/Users/user.model');
-
+const { client, connectRedis } = require('../../DB/redisClient');
 /**
  * Middleware to authenticate the user and set req.user to the logged in user
  * 
@@ -20,17 +20,25 @@ const authMiddleware = async (req, res, next) => {
       });
     }
 
+    await connectRedis();
+    // Check if the token exists in the Redis cache
+    const exists = await client.get(token);
+    if (!exists) return res.status(401).json({ error: 'Token expired or logged out' });
+
+    // Verify the token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded._id);
 
+    // Check if the user exists
     if (!user) {
       return res.status(401).json({ error: 'Please authenticate' });
     }
 
+    // Attach the user to the request
     req.user = user;
     next();
   } catch (e) {
-    res.status(401).json({ error: 'Please authenticate' });
+    res.status(401).json({ error: e.message });
   }
 };
 
